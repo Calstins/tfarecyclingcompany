@@ -9,7 +9,7 @@ import { products } from '@/data/products';
 
 export default function ProductsPage() {
   const searchParams = useSearchParams();
-  const categoryParam = searchParams.get('category') as ProductCategory | null;
+  const categoryParam = searchParams?.get('category') as ProductCategory | null;
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [selectedCategory, setSelectedCategory] = useState<
