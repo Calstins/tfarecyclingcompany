@@ -9,25 +9,24 @@ import { products } from '@/data/products';
 
 export default function ProductsPage() {
   const searchParams = useSearchParams();
-  const categoryParam = searchParams?.get('category') as ProductCategory | null;
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [selectedCategory, setSelectedCategory] = useState<
     ProductCategory | 'all'
-  >(categoryParam || 'all');
+  >('all');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 300000]);
   const [sortBy, setSortBy] = useState<string>('featured');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    // Update filters when URL parameters change
-    if (categoryParam) {
-      setSelectedCategory(categoryParam);
+    const category = searchParams?.get('category') as ProductCategory | null;
+    if (category) {
+      setSelectedCategory(category);
     }
-  }, [categoryParam]);
+  }, [searchParams]);
 
+  // Apply filters and sorting
   useEffect(() => {
-    // Apply filters and sorting
     let result = [...products];
 
     // Filter by category
@@ -77,14 +76,14 @@ export default function ProductsPage() {
     setFilteredProducts(result);
   }, [selectedCategory, priceRange, sortBy, searchQuery]);
 
-  // Get unique categories
+  // Unique categories
   const categories = [
     ...new Set(products.map((product) => product.category)),
   ] as ProductCategory[];
 
-  // Get min and max price from products
-  const minPrice = Math.min(...products.map((product) => product.price));
-  const maxPrice = Math.max(...products.map((product) => product.price));
+  // Min/Max prices
+  const minPrice = Math.min(...products.map((p) => p.price));
+  const maxPrice = Math.max(...products.map((p) => p.price));
 
   return (
     <>
