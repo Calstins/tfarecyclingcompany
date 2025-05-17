@@ -4,16 +4,16 @@ import { products } from '@/data/products';
 import ProductDetail from '@/components/products/ProductDetail';
 import RelatedProducts from '@/components/products/RelatedProducts';
 
-interface PageProps {
+type ProductPageProps = {
   params: {
     slug: string;
   };
-}
+};
 
 // Generate metadata for each product page
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: ProductPageProps): Promise<Metadata> {
   const product = products.find((p) => p.slug === params.slug);
 
   if (!product) {
@@ -41,7 +41,7 @@ export async function generateMetadata({
   };
 }
 
-export default function ProductPage({ params }: PageProps) {
+export default function ProductPage({ params }: ProductPageProps) {
   const product = products.find((p) => p.slug === params.slug);
 
   if (!product) {
