@@ -4,16 +4,19 @@ import { products } from '@/data/products';
 import ProductDetail from '@/components/products/ProductDetail';
 import RelatedProducts from '@/components/products/RelatedProducts';
 
-type PageProps = {
+type ProductPageProps = {
   params: {
     slug: string;
   };
 };
 
+// Generate metadata for each product page
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
-  const product = products.find((p) => p.slug === params.slug);
+}: ProductPageProps): Promise<Metadata> {
+  const product = products.find(
+    (p) => (p.slug as any) === (params.slug as any)
+  );
 
   if (!product) {
     return {
@@ -40,11 +43,16 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: PageProps) {
-  const product = products.find((p) => p.slug === params.slug);
+export default function ProductPage({ params }: ProductPageProps) {
+  const product = products.find(
+    (p) => (p.slug as any) === (params.slug as any)
+  );
 
-  if (!product) notFound();
+  if (!product) {
+    notFound();
+  }
 
+  // Find related products based on category and tags
   const relatedProducts = products
     .filter(
       (p) =>
@@ -62,6 +70,7 @@ export default async function ProductPage({ params }: PageProps) {
   );
 }
 
+// Generate static params for all products
 export async function generateStaticParams() {
   return products.map((product) => ({
     slug: product.slug,
