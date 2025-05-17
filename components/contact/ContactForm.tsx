@@ -48,6 +48,7 @@ const ContactForm = () => {
     try {
       // In a real implementation, you would send this data to your API
       // For demo purposes, we'll simulate a successful submission
+      console.log(values);
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       toast('Message Sent', {
@@ -57,6 +58,7 @@ const ContactForm = () => {
 
       form.reset();
     } catch (error) {
+      console.error('Submission error:', error);
       toast('Error', {
         description:
           'There was a problem sending your message. Please try again later.',

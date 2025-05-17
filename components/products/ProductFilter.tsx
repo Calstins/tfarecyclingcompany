@@ -126,7 +126,9 @@ export const ProductFilters = ({
         </Label>
         <Select
           value={selectedCategory}
-          onValueChange={(value: any) => handleCategoryChange(value)}
+          onValueChange={(value: ProductCategory | 'all') =>
+            handleCategoryChange(value)
+          }
         >
           <SelectTrigger id="category">
             <SelectValue placeholder="Select category" />

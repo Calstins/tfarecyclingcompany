@@ -72,6 +72,7 @@ const QuoteRequestForm = () => {
     setIsSubmitting(true);
 
     try {
+      console.log(values);
       // In a real implementation, you would send this data to your API
       // For demo purposes, we'll simulate a successful submission
       await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -83,6 +84,7 @@ const QuoteRequestForm = () => {
 
       form.reset();
     } catch (error) {
+      console.log(error);
       toast('Error', {
         description:
           'There was a problem submitting your request. Please try again later.',

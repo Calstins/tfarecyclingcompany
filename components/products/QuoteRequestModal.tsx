@@ -25,7 +25,7 @@ import {
   DialogFooter,
   DialogClose,
 } from '@/components/ui/dialog';
-import { Loader2, X } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { Product } from '@/lib/types';
 
 interface QuoteRequestModalProps {
@@ -68,7 +68,7 @@ const QuoteRequestModal = ({
 
   const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true);
-
+    console.log(values);
     try {
       // In a real implementation, you would send this data to your API
       // For demo purposes, we'll simulate a successful submission
@@ -82,6 +82,8 @@ const QuoteRequestModal = ({
       form.reset();
       onClose();
     } catch (error) {
+      console.log(error);
+
       toast('Error', {
         description:
           'There was a problem submitting your request. Please try again later.',
