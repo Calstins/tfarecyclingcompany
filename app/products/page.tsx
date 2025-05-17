@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Products } from '@/components/products/Products';
 import { ProductFilters } from '@/components/products/ProductFilter';
 import { Product, ProductCategory } from '@/lib/types';
 import { products } from '@/data/products';
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
@@ -25,24 +25,20 @@ export default function ProductsPage() {
     }
   }, [searchParams]);
 
-  // Apply filters and sorting
   useEffect(() => {
     let result = [...products];
 
-    // Filter by category
     if (selectedCategory !== 'all') {
       result = result.filter(
         (product) => product.category === selectedCategory
       );
     }
 
-    // Filter by price range
     result = result.filter(
       (product) =>
         product.price >= priceRange[0] && product.price <= priceRange[1]
     );
 
-    // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       result = result.filter(
@@ -53,7 +49,6 @@ export default function ProductsPage() {
       );
     }
 
-    // Sort products
     switch (sortBy) {
       case 'price-asc':
         result.sort((a, b) => a.price - b.price);
@@ -76,15 +71,46 @@ export default function ProductsPage() {
     setFilteredProducts(result);
   }, [selectedCategory, priceRange, sortBy, searchQuery]);
 
-  // Unique categories
   const categories = [
     ...new Set(products.map((product) => product.category)),
   ] as ProductCategory[];
-
-  // Min/Max prices
   const minPrice = Math.min(...products.map((p) => p.price));
   const maxPrice = Math.max(...products.map((p) => p.price));
 
+  return (
+    <section className="py-16 md:py-24">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="w-full lg:w-64 shrink-0">
+            <ProductFilters
+              categories={categories}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              priceRange={priceRange}
+              setPriceRange={setPriceRange}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+            />
+          </div>
+
+          <div className="flex-1">
+            <Products
+              products={filteredProducts}
+              searchQuery={searchQuery}
+              selectedCategory={selectedCategory}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function ProductsPage() {
   return (
     <>
       {/* Hero Section */}
@@ -103,38 +129,12 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Filters Sidebar */}
-            <div className="w-full lg:w-64 shrink-0">
-              <ProductFilters
-                categories={categories}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-                minPrice={minPrice}
-                maxPrice={maxPrice}
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-              />
-            </div>
-
-            {/* Products Grid */}
-            <div className="flex-1">
-              <Products
-                products={filteredProducts}
-                searchQuery={searchQuery}
-                selectedCategory={selectedCategory}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Suspense-wrapped Products Section */}
+      <Suspense
+        fallback={<div className="text-center py-20">Loading products...</div>}
+      >
+        <ProductsContent />
+      </Suspense>
     </>
   );
 }
