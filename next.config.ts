@@ -26,13 +26,13 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  experimental: {
-    optimizeCss: true,
-  },
+  // experimental: {
+  //   optimizeCss: true,
+  // },
 
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // eslint: {
+  //   ignoreDuringBuilds: true,
+  // },
 
   async headers() {
     return [
@@ -66,10 +66,10 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  webpack: (config, { isServer }) => {
-    config.optimization.minimize = false;
-    return config;
-  },
+  // webpack: (config, { isServer }) => {
+  //   config.optimization.minimize = false;
+  //   return config;
+  // },
 };
 
 export default nextConfig;
