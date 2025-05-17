@@ -40,7 +40,7 @@ export async function generateMetadata({
   };
 }
 
-export default function ProductPage({ params }: PageProps) {
+export default async function ProductPage({ params }: PageProps) {
   const product = products.find((p) => p.slug === params.slug);
 
   if (!product) notFound();
