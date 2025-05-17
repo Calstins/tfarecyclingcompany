@@ -22,8 +22,8 @@ export default function Contact() {
             </h1>
             <p className="text-xl text-gray-300 mb-8">
               Have questions, want to place an order, or interested in custom
-              furniture? We'd love to hear from you and help bring sustainable
-              style to your space.
+              furniture? We&apos;d love to hear from you and help bring
+              sustainable style to your space.
             </p>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function Contact() {
               </h2>
               <p className="text-lg text-gray-700">
                 Looking for custom furniture or bulk orders? Fill out the form
-                below with your requirements, and we'll provide you with a
+                below with your requirements, and we&apos;ll provide you with a
                 detailed quote.
               </p>
             </div>

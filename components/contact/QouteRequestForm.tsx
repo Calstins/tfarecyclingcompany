@@ -166,7 +166,7 @@ const QuoteRequestForm = () => {
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Select the type of product you're interested in
+                    Select the type of product you&apos;re interested in
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -188,7 +188,7 @@ const QuoteRequestForm = () => {
                     />
                   </FormControl>
                   <FormDescription>
-                    How many items you're interested in
+                    How many items you&apos;re interested in
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { X } from 'lucide-react';
@@ -15,23 +15,27 @@ interface MobileMenuProps {
 
 const MobileMenu = ({ isOpen, onClose, navigation }: MobileMenuProps) => {
   const pathname = usePathname();
+  const initialPathnameRef = useRef(pathname);
 
-  // Close mobile menu when route changes
+  // Close mobile menu only if actual route changes
   useEffect(() => {
-    if (isOpen) onClose();
+    if (isOpen && pathname !== initialPathnameRef.current) {
+      onClose();
+    }
   }, [pathname, isOpen, onClose]);
 
   // Prevent scrolling when menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      initialPathnameRef.current = pathname; // Store the pathname when menu opens
     } else {
       document.body.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isOpen]);
+  }, [isOpen, pathname]);
 
   if (!isOpen) return null;
 

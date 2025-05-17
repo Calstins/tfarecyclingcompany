@@ -25,9 +25,9 @@ const CallToAction = () => {
           </h2>
 
           <p className="text-white/90 text-lg mb-8">
-            Whether you're looking for a statement piece or a complete furniture
-            set, our eco-friendly designs combine beauty, function, and
-            environmental responsibility.
+            Whether you&apos;re looking for a statement piece or a complete
+            furniture set, our eco-friendly designs combine beauty, function,
+            and environmental responsibility.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

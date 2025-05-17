@@ -62,7 +62,7 @@ export default function About() {
                 <p>
                   Every product we craft is a reflection of our dedication to
                   the environment and our love for bold, meaningful design. At
-                  TFA, we don't just recycle; we reimagine.
+                  TFA, we don&apos;t just recycle; we reimagine.
                 </p>
               </div>
             </div>
@@ -89,9 +89,9 @@ export default function About() {
               Our Mission & Vision
             </h2>
             <p className="text-lg text-gray-700">
-              We're on a mission to transform waste into wonder while creating
-              positive environmental and social impact through innovative
-              design.
+              We&apos;re on a mission to transform waste into wonder while
+              creating positive environmental and social impact through
+              innovative design.
             </p>
           </div>
 

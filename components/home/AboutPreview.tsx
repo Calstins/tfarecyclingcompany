@@ -49,7 +49,7 @@ const AboutPreview = () => {
             </p>
 
             <p className="text-lg text-gray-700">
-              At TFA, we don't just recycle; we reimagine. Through our
+              At TFA, we don&apos;t just recycle; we reimagine. Through our
               innovative process, we create furniture that tells a story of
               transformation and purpose, while providing exceptional quality
               and durability.
