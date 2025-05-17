@@ -3,11 +3,12 @@ import { Metadata } from 'next';
 import { products } from '@/data/products';
 import ProductDetail from '@/components/products/ProductDetail';
 import RelatedProducts from '@/components/products/RelatedProducts';
+import { any } from 'zod';
 
 type ProductPageProps = {
   params: {
     slug: string;
-  };
+  } & any;
 };
 
 // Generate metadata for each product page
