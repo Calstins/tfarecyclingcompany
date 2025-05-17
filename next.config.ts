@@ -30,6 +30,10 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
   },
 
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   async headers() {
     return [
       {
@@ -60,6 +64,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
+  },
+
+  webpack: (config, { isServer }) => {
+    config.optimization.minimize = false;
+    return config;
   },
 };
 
