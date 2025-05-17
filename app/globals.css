@@ -1,26 +1,413 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+
+    /* TFA Brand Colors from logo */
+    --tfa-green: 142 65% 23%;
+    --tfa-yellow: 48 100% 50%;
+    --tfa-black: 0 0% 10%;
+    --tfa-gear: 0 0% 25%;
+
+    /* Updated primary color to use TFA green */
+    --primary: var(--tfa-green);
+    --primary-foreground: 60 9.1% 97.8%;
+
+    /* Updated secondary color to use TFA yellow */
+    --secondary: var(--tfa-yellow);
+    --secondary-foreground: 24 9.8% 10%;
+
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: var(--tfa-green);
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: var(--tfa-black);
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: var(--tfa-green);
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: var(--tfa-yellow);
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: var(--tfa-green);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply leading-7;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-colors;
+  }
+
+  /* TFA specific button styles */
+  .btn-tfa-green {
+    @apply bg-tfa-green text-white hover:bg-tfa-green/90 transition-colors;
+  }
+
+  .btn-tfa-yellow {
+    @apply bg-tfa-yellow text-tfa-black hover:bg-tfa-yellow/90 transition-colors;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-16 lg:py-24;
+  }
+
+  .nav-link {
+    @apply text-foreground/80 hover:text-foreground transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply text-primary font-medium;
+  }
+}
+
+/* Custom animations */
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+/* Staggered animations for children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stagger-children > *:nth-child(1) {
+  animation: slideUp 0.5s ease-out 0.1s forwards;
+}
+
+.stagger-children > *:nth-child(2) {
+  animation: slideUp 0.5s ease-out 0.2s forwards;
+}
+
+.stagger-children > *:nth-child(3) {
+  animation: slideUp 0.5s ease-out 0.3s forwards;
+}
+
+.stagger-children > *:nth-child(4) {
+  animation: slideUp 0.5s ease-out 0.4s forwards;
+}
+
+.stagger-children > *:nth-child(5) {
+  animation: slideUp 0.5s ease-out 0.5s forwards;
+}
+
+.stagger-children > *:nth-child(n + 6) {
+  animation: slideUp 0.5s ease-out 0.6s forwards;
+}
+
+/* Slider styles */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  height: 80vh;
+  min-height: 500px;
+}
+
+.embla__slide {
+  height: 100%;
+  position: relative;
+}
+
+/* Gallery styles */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+/* Product card hover effect */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Tailwind v4 style theme variables */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* TFA brand colors */
+  --color-tfa-green: var(--tfa-green);
+  --color-tfa-yellow: var(--tfa-yellow);
+  --color-tfa-black: var(--tfa-black);
+  --color-tfa-gear: var(--tfa-gear);
+}
+
+/* Base theme using modern color syntax */
+:root {
+  --radius: 0.625rem;
+
+  /* TFA logo colors in modern OKLCH format */
+  --tfa-green: oklch(0.32 0.15 145); /* Bright green from logo */
+  --tfa-yellow: oklch(0.85 0.2 85); /* Bright yellow from logo */
+  --tfa-black: oklch(0.15 0 0); /* Black from logo text */
+  --tfa-gear: oklch(0.25 0 0); /* Dark gear color from logo */
+
+  /* Base theme colors */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* Updated primary and secondary to use TFA colors */
+  --primary: var(--tfa-green);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: var(--tfa-yellow);
+  --secondary-foreground: var(--tfa-black);
+
+  /* Other theme colors */
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: var(--tfa-green);
+
+  /* Chart colors */
+  --chart-1: var(--tfa-green);
+  --chart-2: var(--tfa-yellow);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Sidebar colors */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: var(--tfa-green);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: var(--tfa-green);
+}
+
+/* Dark theme */
+.dark {
+  --background: var(--tfa-black);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  /* Updated primary and secondary for dark mode */
+  --primary: var(--tfa-green);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: var(--tfa-yellow);
+  --secondary-foreground: var(--tfa-black);
+
+  /* Other dark theme colors */
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--tfa-green);
+
+  /* Chart colors for dark mode */
+  --chart-1: var(--tfa-green);
+  --chart-2: var(--tfa-yellow);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  /* Sidebar colors for dark mode */
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--tfa-green);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: var(--tfa-green);
+}
+
+/* Additional TFA theme utilities */
+@layer utilities {
+  .text-tfa-green {
+    color: hsl(var(--tfa-green));
+  }
+
+  .text-tfa-yellow {
+    color: hsl(var(--tfa-yellow));
+  }
+
+  .text-tfa-black {
+    color: hsl(var(--tfa-black));
+  }
+
+  .bg-tfa-green {
+    background-color: hsl(var(--tfa-green));
+  }
+
+  .bg-tfa-yellow {
+    background-color: hsl(var(--tfa-yellow));
+  }
+
+  .bg-tfa-black {
+    background-color: hsl(var(--tfa-black));
+  }
+
+  .border-tfa-green {
+    border-color: hsl(var(--tfa-green));
+  }
+
+  .border-tfa-yellow {
+    border-color: hsl(var(--tfa-yellow));
+  }
+
+  .border-tfa-black {
+    border-color: hsl(var(--tfa-black));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
