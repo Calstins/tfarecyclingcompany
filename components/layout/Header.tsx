@@ -84,7 +84,7 @@ const Header = () => {
           onClick={() => setIsMobileMenuOpen(true)}
           aria-label="Open menu"
         >
-          <Menu className="h-6 w-6" />
+          <Menu className="h-6 w-6 text-white" />
         </button>
       </div>
 
