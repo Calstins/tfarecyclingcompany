@@ -58,10 +58,10 @@ const ContactInfo = () => {
             <h3 className="font-semibold text-lg mb-1">Email Us</h3>
             <p className="text-gray-600">
               <Link
-                href="mailto:tfarecyclingcompany@gmail.com"
+                href="mailto:talk2us@tfarecycling.com"
                 className="hover:text-primary transition-colors"
               >
-                tfarecyclingcompany@gmail.com
+                talk2us@tfarecycling.com
               </Link>
             </p>
           </div>

@@ -140,7 +140,13 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-3">
                 <Mail className="h-5 w-5 text-secondary mt-0.5" />
-                <p className="text-gray-300">info@tfarecyclingcompany.com</p>
+                <a
+                  href="mailto:talk2us@tfarecycling.com"
+                  className="text-gray-300 decoration-0 hover:text-secondary transition-colors"
+                  aria-label="Email TFA"
+                >
+                  talk2us@tfarecycling.com
+                </a>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="h-7 w-7 text-secondary mt-0.5" />
