@@ -6,7 +6,7 @@ export const products: Product[] = [
     name: 'Blue Lounge Tyre Set',
     slug: 'blue-lounge-tyre-set',
     category: 'sets',
-    price: 220000,
+    price: 599999,
     images: [
       'https://barattini.coffee/wp-content/uploads/2025/05/WhatsApp-Image-2022-05-03-at-12.50.58-AM-1.jpeg',
       'https://barattini.coffee/wp-content/uploads/2025/05/IMG-20230212-WA0086.jpg',
@@ -304,11 +304,11 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 'gubernatorial-tyre-chair',
-    name: 'Gubernatorial Tyre Chair',
-    slug: 'gubernatorial-tyre-chair',
+    id: 'confy-boss-chair',
+    name: '255,999',
+    slug: 'Confy Boss Chair',
     category: 'chairs',
-    price: 120000,
+    price: 255999,
     images: [
       'https://barattini.coffee/wp-content/uploads/2025/05/20241212_100947-scaled.jpg',
       'https://barattini.coffee/wp-content/uploads/2025/05/WhatsApp-Image-2023-12-21-at-02.35.05.jpeg',
@@ -369,11 +369,11 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 'decorative-tyre-planter',
-    name: 'Decorative Tyre Planter',
+    id: 'highlife-garden-seat',
+    name: 'Highlife Garden Seat',
     slug: 'decorative-tyre-planter',
     category: 'sets',
-    price: 18000,
+    price: 499750,
     images: [
       'https://barattini.coffee/wp-content/uploads/2025/05/20221102_142605-scaled.jpg',
       'https://barattini.coffee/wp-content/uploads/2025/05/20241212_101004-scaled.jpg',

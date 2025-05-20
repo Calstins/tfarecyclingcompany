@@ -7,47 +7,36 @@ import { Instagram, Linkedin, Mail } from 'lucide-react';
 
 const teamMembers = [
   {
-    name: 'Adebola Adeyemi',
+    name: 'Hassan',
     role: 'Founder & Creative Director',
-    bio: 'Adebola founded TFA with a vision to transform waste into beautiful furniture. With a background in industrial design and environmental science, she leads our creative direction and sustainability initiatives.',
-    image: 'https://randomuser.me/api/portraits/women/32.jpg',
+    bio: 'Hassan founded TFA with a vision to transform waste into beautiful furniture. With a background in industrial design and environmental science, he leads our creative direction and sustainability initiatives.',
+    image: '/hassan.jpg',
     social: {
       instagram: '#',
       linkedin: '#',
-      email: 'mailto:contact@tfa.com',
+      email: 'mailto:contact@tfarecycling.com',
     },
   },
   {
-    name: 'Emmanuel Okonkwo',
-    role: 'Head of Production',
-    bio: 'Emmanuel oversees our workshop operations and brings over 15 years of furniture crafting experience. His expertise ensures that every piece meets our high standards of quality and durability.',
-    image: 'https://randomuser.me/api/portraits/men/46.jpg',
+    name: 'Miss Folawumi Mutiyah',
+    role: 'Company Secretary/Design Specialist',
+    bio: 'With her background in sustainable solutions, she is well-equipped to contribute to roles that require strong product analysis, strategic insight, and a proactive approach to problem-solving. Miss Folawumi is a driven individual with a strong passion for communication, critical thinking, and creative engagement. She thrives in environments that value adaptability, analytical thinking, and meaningful collaboration.',
+    image: '/miss.jpg',
     social: {
       instagram: '#',
       linkedin: '#',
-      email: 'mailto:contact@tfa.com',
+      email: 'mailto:contact@tfarecycling.com',
     },
   },
   {
-    name: 'Folake Adegoke',
-    role: 'Design Specialist',
-    bio: 'Folake brings creativity and innovation to our design process. With her background in furniture design and sustainable materials, she creates pieces that are both beautiful and functional.',
-    image: 'https://randomuser.me/api/portraits/women/65.jpg',
-    social: {
-      instagram: '#',
-      linkedin: '#',
-      email: 'mailto:contact@tfa.com',
-    },
-  },
-  {
-    name: 'Tunde Bakare',
+    name: 'Mr. Qudus Yakube',
     role: 'Master Craftsman',
-    bio: `Tunde's skillful hands transform raw materials into finished masterpieces. With decades of experience in furniture making, he leads our team of artisans and ensures impeccable craftsmanship.`,
-    image: 'https://randomuser.me/api/portraits/men/22.jpg',
+    bio: `Qudus's skillful hands transform raw materials into finished masterpieces. With decades of experience in furniture making, he leads our team of artisans and ensures impeccable craftsmanship.`,
+    image: '/qudus.jpg',
     social: {
       instagram: '#',
       linkedin: '#',
-      email: 'mailto:contact@tfa.com',
+      email: 'mailto:contact@tfarecycling.com',
     },
   },
 ];
@@ -65,7 +54,7 @@ const OurTeam = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
@@ -81,7 +70,7 @@ const OurTeam = () => {
                   alt={member.name}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover object-center"
+                  className="object-cover object-top"
                 />
               </div>
               <div className="p-6">
